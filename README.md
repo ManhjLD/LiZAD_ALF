@@ -1,8 +1,7 @@
-# LiZAD: A Lightweight Zero-Shot Anomaly Detection Framework for Industrial Manufacturing
-The official implementation of the paper [LiZAD: A Lightweight Zero-Shot Anomaly Detection Framework for Industrial Manufacturing](https://arxiv.org/abs/2607.01949) accepted at the IEEE International Conference on Omni-Layer Intelligent Systems (COINS 2026).
+# Adaptive Static-Dynamic Layer Fusion for Lightweight Zero-Shot Industrial Anomaly Detection
 
 ## Abstract
-In modern high-throughput industrial production lines, product configurations and visual characteristics frequently change, making it impractical to collect and annotate data for every new scenario. This dynamic setting makes Zero-Shot Anomaly Detection (ZSAD) particularly suitable, as it enables defect detection without requiring training on target-specific samples. Although recent ZSAD approaches show promising results, they are computationally intensive and thus unsuitable for deployment on resource-constrained devices. We propose LiZAD: a first lightweight framework designed for real-time ZSAD specifically tailored for use on edge devices. The proposed approach pairs the dense and spatially aware visual features of DINOv3, crucial for precise pixel-level localization, with the highly computationally efficient text embeddings of MobileCLIP2, mapping them into a shared latent space via low-memory trainable projection heads. Compared to six state- of-the-art ZSAD models, LiZAD achieves an average memory reduction of 61.5%, a parameter reduction of 74.6%, and a speedup of 3.02× in terms of latency. Despite substantial reductions in computational and memory costs, our approach maintains competitive anomaly detection performance, dropping the average P-AUROC by just 6.4% relative to the best state- of-the-art model across the VisA, BTAD, MPDD, and MVTec- AD datasets. Finally, it is successfully deployed on the NVIDIA Jetson NX and Jetson AGX edge devices, and tested on the real production line of the omitted due to double-blind peer review.
+Zero-shot industrial anomaly detection aims to identify defective patterns in unseen target domains without requiring target-specific anomaly training samples. However, effectively aggregating multi-layer visual representations remains a challenge, as different feature layers may contribute differently to anomaly localization. This paper investigates Adaptive Static-Dynamic Layer Fusion (ALFv2), a layer weighting strategy integrated into the lightweight LiZAD framework. ALFv2 combines learnable static layer weights with input-dependent dynamic weights through a controllable fusion coefficient, while retaining the original visual backbone and vision-language components. The method is evaluated using four cross-dataset settings involving VisA, BTAD, MPDD, and MVTec-AD, with pixel-level Area Under the ROC Curve (AUC-Pixel) as the evaluation metric. Experimental results show that ALFv2 improves the average AUC-Pixel from 90.574\% to 92.382\%, achieving an absolute gain of 1.808 percentage points over the original LiZAD baseline. These results indicate that static-dynamic layer fusion can improve cross-dataset anomaly localization while preserving the original lightweight framework architecture.
 
 ## Installation
 Create a new Conda environment and install the required dependencies:
@@ -53,10 +52,3 @@ bash test.sh
 ### 7. Acknowledgement
 We gratefully acknowledge the open-source contributions of the [AdaCLIP](https://github.com/caoyunkang/AdaCLIP), [AA-CLIP](https://github.com/Mwxinnn/AA-CLIP), [MobileCLIP](https://github.com/apple/ml-mobileclip), [DINOv3](https://github.com/facebookresearch/dinov3) authors, whose work made this project possible.
 
-## Authors ##
-Uzair Khan<sup>1</sup>, Luigi Capogrosso<sup>2</sup>, Muhammad Aqeel<sup>1</sup>, Francesco Setti<sup>1</sup>, Michele Magno<sup>3,2</sup>, Marco Cristani<sup>1,4 </sup>
-
-<sup>1</sup> *University of Verona*
-<sup>2</sup> *Interdisciplinary Transformation University of Austria*
-<sup>3</sup> *ETH Zurich*
-<sup>4</sup> *Reykjavik University*
